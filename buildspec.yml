@@ -8,9 +8,10 @@ phases:
   
   install:  
     commands:
-      - sudo yum install -y yum-utils
-      - sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-      - sudo yum -y install terraform  
+      - sudo yum install -y yum-utils shadow-utils
+      - sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+      - sudo yum -y install terraform
+      - terraform version
       # - cd /usr/bin  
       # - "curl -s -qL -o terraform.zip https://releases.hashicorp.com/terraform/3.15.0/terraform_3.15.0_linux_amd64.zip"  
       # - unzip -o terraform.zip  
