@@ -1,0 +1,30 @@
+Overview
+We created a CodePipeline using Terraform to deploy a simple "Hello World" Node.js application to AWS Lambda, which will be triggered by an API Gateway HTTP request.
+
+Prerequisites
+Before running the Terraform script, make sure you have the following:
+
+AWS account with sufficient permissions
+Terraform installed
+Node.js installed
+Git installed
+Steps
+Create a new Node.js project with the following files:
+index.js: Lambda function code
+package.json: Node.js project metadata file
+package-lock.json: Dependency lock file
+Initialize a new Git repository and push the project to GitHub.
+Create an S3 bucket to store the deployment artifacts.
+Write a Terraform script to create the following resources:
+Lambda function
+API Gateway REST API
+API Gateway resource and method
+Lambda function deployment package in S3
+CodePipeline to automate the deployment process
+IAM roles and policies for CodePipeline and Lambda function
+Run terraform init to initialize the Terraform working directory.
+Run terraform plan to preview the infrastructure changes that will be made.
+Run terraform apply to apply the changes and create the resources.
+Test the API endpoint by sending an HTTP request to the API Gateway REST API URL.
+Conclusion
+We have successfully created a simple "Hello World" Node.js application and deployed it to AWS Lambda using Terraform and CodePipeline. This serves as a starting point for more complex serverless applications that can be built and deployed using similar methods.
