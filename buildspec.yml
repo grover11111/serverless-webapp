@@ -16,7 +16,7 @@ phases:
   build:  
     commands:
       - terraform init -no-color  
-      - terraform apply -no-color  --auto-approve
+      - terraform destroy -no-color  --auto-approve
   
   post_build:  
     commands:  
