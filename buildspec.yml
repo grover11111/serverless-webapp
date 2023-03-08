@@ -23,7 +23,7 @@ phases:
      # - cd "$CODEBUILD_SRC_DIR"  
     #  - sed -i -e "s/{{ENV}}/$TF_VAR_ENV/" terraform.tf  
       - terraform init -no-color  
-      - terraform apply -no-color  
+      - terraform apply -no-color  --auto-approve
   
   post_build:  
     commands:  

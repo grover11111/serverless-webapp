@@ -10,7 +10,7 @@ resource "aws_s3_bucket" "application_bucket" {
 }
 
 
-# Upload the application code to the S3 bucket
+# # Upload the application code to the S3 bucket
 # resource "aws_s3_bucket_object" "application_code" {
 #   bucket       = aws_s3_bucket.application_bucket.id
 #   key          = "application.zip"
