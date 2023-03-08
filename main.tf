@@ -21,7 +21,7 @@ resource "aws_s3_bucket_object" "application_code" {
 
 # Define the IAM role for the Lambda function
 resource "aws_iam_role" "lambda_role" {
-  name = "my-lambda-role"
+  name = "nodejs-lambda-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -51,10 +51,10 @@ data "archive_file" "lambda" {
 
 # Define the Lambda function
 resource "aws_lambda_function" "my_lambda_function" {
-  function_name    = "my-hello-world-lambda"
+  function_name    = "nodejs-lambda"
   role             = aws_iam_role.lambda_role.arn
   handler          = "index.handler"
-  runtime          = "nodejs14.x"
+  runtime          = "nodejs12.x"
   timeout          = 300
   memory_size      = 128
   source_code_hash = data.archive_file.lambda.output_base64sha256
@@ -104,4 +104,15 @@ resource "aws_api_gateway_method_response" "my_api_method_response" {
   resource_id = aws_api_gateway_resource.my_api_resource.id
   http_method = aws_api_gateway_method.my_api_method.http_method
   status_code = "200"
+}
+
+resource "aws_lambda_permission" "lambda_permission" {
+  statement_id  = "AllowMyDemoAPIInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.my_lambda_function.id
+  principal     = "apigateway.amazonaws.com"
+
+  # The /* part allows invocation from any stage, method and resource path
+  # within API Gateway.
+  source_arn = "${aws_api_gateway_rest_api.my_api.execution_arn}/*"
 }

@@ -9,11 +9,13 @@ phases:
   install:  
     commands:  
       - cd /usr/bin  
-      - "curl -s -qL -o terraform.zip https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip"  
+      - "curl -s -qL -o terraform.zip https://releases.hashicorp.com/terraform/3.15.0/terraform_3.15.0_linux_amd64.zip"  
       - unzip -o terraform.zip  
   
   build:  
-    commands:     
+    commands:
+      - echo "COMMANDS ~~~~~~~~~~~~~~~~~~~~"
+      - ls      
       - cd "$CODEBUILD_SRC_DIR"  
     #  - sed -i -e "s/{{ENV}}/$TF_VAR_ENV/" terraform.tf  
       - terraform init -no-color  
