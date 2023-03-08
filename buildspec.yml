@@ -1,12 +1,24 @@
-version: 0.2
-
-phases:
-  install:
-    commands:
-      - npm install
-  build:
-    commands:
-      - zip -r application.zip *
-artifacts:
-  files:
-    - application.zip
+version: 0.2  
+  
+env:  
+  variables:  
+    TF_VERSION: "0.12.8" 
+  
+phases:  
+  
+  install:  
+    commands:  
+      - cd /usr/bin  
+      - "curl -s -qL -o terraform.zip https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip"  
+      - unzip -o terraform.zip  
+  
+  build:  
+    commands:     
+      - cd "$CODEBUILD_SRC_DIR"  
+    #  - sed -i -e "s/{{ENV}}/$TF_VAR_ENV/" terraform.tf  
+      - terraform init -no-color  
+      - terraform apply -no-color  
+  
+  post_build:  
+    commands:  
+      - echo "terraform apply  completed"
