@@ -7,21 +7,6 @@ data "aws_caller_identity" "current" {}
 locals {
   current_account_id = data.aws_caller_identity.current.account_id
 }
-# Define the S3 bucket to store the application code
-# resource "aws_s3_bucket" "application_bucket" {
-#   bucket = "my-hello-world-app"
-#   acl  = "private"
-# }
-
-
-# # Upload the application code to the S3 bucket
-# resource "aws_s3_bucket_object" "application_code" {
-#   bucket       = aws_s3_bucket.application_bucket.id
-#   key          = "application.zip"
-#   source       = "application.zip"
-#   content_type = "application/zip"
-#   etag         = filemd5("application.zip")
-# }
 
 # Define the IAM role for the Lambda function
 resource "aws_iam_role" "lambda_role" {
