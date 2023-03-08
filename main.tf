@@ -11,13 +11,13 @@ resource "aws_s3_bucket" "application_bucket" {
 
 
 # Upload the application code to the S3 bucket
-resource "aws_s3_bucket_object" "application_code" {
-  bucket       = aws_s3_bucket.application_bucket.id
-  key          = "application.zip"
-  source       = "application.zip"
-  content_type = "application/zip"
-  etag         = filemd5("application.zip")
-}
+# resource "aws_s3_bucket_object" "application_code" {
+#   bucket       = aws_s3_bucket.application_bucket.id
+#   key          = "application.zip"
+#   source       = "application.zip"
+#   content_type = "application/zip"
+#   etag         = filemd5("application.zip")
+# }
 
 # Define the IAM role for the Lambda function
 resource "aws_iam_role" "lambda_role" {
