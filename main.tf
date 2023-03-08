@@ -2,12 +2,16 @@
 provider "aws" {
   region = "us-east-1"
 }
+data "aws_caller_identity" "current" {}
 
-# Define the S3 bucket to store the application code
-resource "aws_s3_bucket" "application_bucket" {
-  bucket = "my-hello-world-app"
-  acl  = "private"
+locals {
+  current_account_id = data.aws_caller_identity.current.account_id
 }
+# Define the S3 bucket to store the application code
+# resource "aws_s3_bucket" "application_bucket" {
+#   bucket = "my-hello-world-app"
+#   acl  = "private"
+# }
 
 
 # # Upload the application code to the S3 bucket
