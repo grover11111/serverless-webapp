@@ -1,23 +1,20 @@
-version: 0.2  
-  
-env:  
-  variables:  
-    TF_VERSION: "0.12.8" 
-  
-phases:  
-  
-  install:  
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+  pre_build:
     commands:
-      - sudo yum install -y yum-utils shadow-utils
-      - sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-      - sudo yum -y install terraform
-      - terraform version
-  
-  build:  
+      - npm init --yes
+  build:
     commands:
-      - terraform init -no-color  
-      - terraform apply -no-color  --auto-approve
-  
-  post_build:  
-    commands:  
-      - echo "terraform apply  completed"
+      - npm install
+      - npm run build
+  artifacts:
+    files:
+      - README.md
+      - app.js
+      - package.json
+      - package-lock.json
+      - public/*
